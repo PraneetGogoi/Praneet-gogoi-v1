@@ -1500,8 +1500,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   display:block;color:var(--yellow);-webkit-text-stroke:3px var(--ink);
   opacity:0;transform:translateY(40px);animation:landDrop .6s .5s var(--ease-spring) forwards;
 }
-.landing-title:hover .l2{animation:titleWobble .4s ease}
-@keyframes titleWobble{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-4px) rotate(-1deg)}75%{transform:translateY(2px) rotate(1deg)}}
+.landing-title:hover .l2{animation:titleWobble .4s ease forwards}
+@keyframes titleWobble{0%,100%{opacity:1;transform:translateY(0) rotate(0)}25%{opacity:1;transform:translateY(-4px) rotate(-1deg)}75%{opacity:1;transform:translateY(2px) rotate(1deg)}}
 /* typed role line */
 .landing-typed{
   font-family:'JetBrains Mono',monospace;font-size:clamp(.85rem,2.4vw,1.15rem);
