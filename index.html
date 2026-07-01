@@ -1324,12 +1324,18 @@ footer{
   .hero-left{padding:1.5rem 1rem}
   .hero-name{font-size:clamp(2.5rem,13vw,3.8rem);line-height:.95}
   
-  /* Fix SFX background stamps overlapping text */
-  .hero-sfx{font-size:1.6rem;top:.6rem;right:.6rem;opacity:.3}
-  .exp-sfx,.ultimate-sfx,.bg-sfx{
-    opacity:.12!important;font-size:1.4rem!important;
-    bottom:.5rem!important;right:.5rem!important;
+  /* Fix SFX background stamps overlapping text (overrides inline styles like LEGENDARY!) */
+  .panel,.exp-panel,.proj-flagship,.res-panel,.contact-panel{overflow:hidden!important}
+  .sfx,.sfx-abs,.hero-sfx,.exp-sfx,.ultimate-sfx,.bg-sfx{
+    top:auto!important;bottom:.5rem!important;right:.5rem!important;
+    font-size:1.3rem!important;opacity:.12!important;
+    pointer-events:none!important;z-index:0!important;
   }
+  .hero-sfx{top:.6rem!important;bottom:auto!important;right:.6rem!important;opacity:.25!important}
+  
+  /* Filter bar wrap */
+  .filter-bar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+  .filter-tab{flex:1 1 auto;text-align:center;font-size:.72rem;padding:6px 10px}
   
   /* Stack CTA buttons cleanly */
   .ctas{flex-direction:column;align-items:stretch;gap:10px}
@@ -1340,10 +1346,11 @@ footer{
   .ttab{flex:1 1 50%;text-align:center;padding:8px 6px;font-size:9px}
   .term-crt-btn{margin-left:0!important;flex:1 1 100%;text-align:center;border-top:1px solid #252525;padding:6px}
   
-  /* Reduce panel padding so text has breathing room */
+  /* Reduce panel padding so text has breathing room and add bottom clearance for fab-dock */
   .exp-panel,.proj-flagship,.res-panel,.contact-panel,.char-card,.skill-cat,.dp,.mid-panel{
-    padding:1.25rem 1rem;
+    padding:1.25rem 1rem 55px!important;
   }
+  .sw{padding-bottom:60px!important}
   .exp-co{font-size:1.45rem}
   .proj-name{font-size:1.5rem}
   .res-title{font-size:1.35rem}
@@ -1355,17 +1362,17 @@ footer{
   
   /* Flip cards & Lists */
   .flip-back{padding:1rem;overflow-y:auto}
-  .pb li,.exp-list li,.res-list li{font-size:12px;line-height:1.5}
+  .pb li,.exp-list li,.res-list li{font-size:12px;line-height:1.5;position:relative;z-index:1}
   
   /* Footer & Modals */
-  footer{flex-direction:column;gap:8px;text-align:center;padding:1rem}
+  footer{flex-direction:column;gap:8px;text-align:center;padding:1rem 1rem 60px}
   .resume-modal-box,.shortcuts-box,.cmdk-box{width:98vw;max-height:90vh}
   .resume-modal-header{padding:10px 12px;font-size:.95rem}
   .resume-modal-actions .btn{padding:4px 8px;font-size:11px}
   
   /* Floating Action Buttons */
-  #fab-dock{gap:4px;padding:4px;bottom:8px}
-  .fab{width:36px;height:36px;font-size:.9rem}
+  #fab-dock{gap:4px;padding:4px 6px;bottom:6px;background:rgba(18,18,18,.94);backdrop-filter:blur(8px);max-width:96vw}
+  .fab{width:34px;height:34px;font-size:.85rem}
 }
 
 /* Touch Device Cursor Reset */
