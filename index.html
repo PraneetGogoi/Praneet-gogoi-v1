@@ -1000,46 +1000,117 @@ footer{
 @media(max-width:900px){#progress-rail{display:none}}
 
 #cmdk-overlay{
-  position:fixed;inset:0;z-index:9000;
-  background:rgba(0,0,0,.6);backdrop-filter:blur(3px);
-  display:none;align-items:flex-start;justify-content:center;padding-top:12vh;
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(6,6,10,0.85);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:20px;
 }
 #cmdk-overlay.open{display:flex}
 .cmdk-box{
-  width:min(560px,92vw);background:var(--bg-panel);
-  border:var(--bb);box-shadow:8px 8px 0 var(--ink);
-  animation:cmdkIn .25s var(--ease-spring);
+  width:min(660px,94vw);background:var(--bg-panel);
+  border:3px solid var(--yellow);box-shadow:14px 14px 0 #000, 0 0 50px rgba(255,229,0,0.25);
+  border-radius:8px;overflow:hidden;position:relative;
+  animation:cmdkIn .3s var(--ease-spring);
+  display:flex;flex-direction:column;
 }
-@keyframes cmdkIn{from{opacity:0;transform:translateY(-20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-.cmdk-input-wrap{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:3px solid var(--ink)}
-.cmdk-prompt{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:1rem}
+@keyframes cmdkIn{
+  0%{opacity:0;transform:translateY(-30px) scale(.92) rotate(-1deg)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0deg)}
+}
+.cmdk-topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 18px;background:#0d0d14;border-bottom:2px solid var(--ink);
+}
+.cmdk-pill{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--yellow);background:rgba(255,229,0,0.12);
+  padding:4px 10px;border-radius:4px;border:1px solid var(--yellow);
+  display:flex;align-items:center;gap:8px;
+}
+.cmdk-pill .pulse-d{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+.cmdk-heading{font-size:1.3rem;letter-spacing:.08em;color:#fff}
+.cmdk-close-btn{
+  background:transparent;border:2px solid var(--ink-soft);color:var(--text2);
+  padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  border-radius:4px;transition:all .15s;cursor:pointer;
+}
+.cmdk-close-btn:hover{border-color:var(--red);color:#fff;background:var(--red)}
+
+.cmdk-banner{
+  background:var(--yellow);color:#000;padding:6px 16px;
+  font-size:.9rem;letter-spacing:.12em;text-align:center;font-weight:700;
+  border-bottom:3px solid #000;
+}
+
+.cmdk-input-wrap{
+  display:flex;align-items:center;gap:14px;padding:16px 20px;
+  background:rgba(0,0,0,0.45);border-bottom:3px solid var(--yellow);
+}
+.cmdk-prompt{
+  font-size:1.15rem;color:#000;background:var(--cyan);padding:4px 10px;
+  border:2px solid #000;box-shadow:3px 3px 0 #000;letter-spacing:.06em;
+  transform:rotate(-2deg);
+}
 #cmdk-input{
   flex:1;background:transparent;border:none;outline:none;
-  font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--text);
+  font-family:'Bangers',cursive;font-size:1.4rem;letter-spacing:.06em;color:var(--yellow);
 }
-.cmdk-list{max-height:340px;overflow-y:auto;padding:8px}
+#cmdk-input::placeholder{color:var(--text2);font-family:'JetBrains Mono',monospace;font-size:.95rem;letter-spacing:0}
+
+.cmdk-list{
+  max-height:360px;overflow-y:auto;padding:12px;
+  display:flex;flex-direction:column;gap:8px;
+}
 .cmdk-item{
-  display:flex;align-items:center;gap:12px;padding:11px 14px;cursor:none;
-  font-family:'Noto Sans',sans-serif;font-size:14px;
-  border:2px solid transparent;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:12px 16px;border:2px solid var(--ink-soft);border-radius:6px;
+  background:rgba(255,255,255,0.02);cursor:pointer;
+  transition:all .15s var(--ease-spring);
 }
-.cmdk-item .icon{font-size:1.1rem;width:24px;text-align:center}
-.cmdk-item .k{font-family:'Bangers',cursive;letter-spacing:.08em;font-size:1rem}
-.cmdk-item .desc{color:var(--text2);font-size:12px;margin-left:auto}
-.cmdk-item.sel{border-color:var(--ink);background:var(--yellow);color:#000}
-.cmdk-item.sel .desc{color:#333}
+.cmdk-item-left{display:flex;align-items:center;gap:14px}
+.cmdk-item .icon{
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  background:#14141f;border:2px solid var(--ink-soft);border-radius:6px;
+  font-size:1.1rem;color:var(--yellow);transition:all .15s;
+}
+.cmdk-item .k{font-family:'Bangers',cursive;letter-spacing:.08em;font-size:1.2rem;color:var(--text)}
+.cmdk-item .desc{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  color:var(--cyan);background:rgba(0,240,255,0.1);padding:3px 10px;
+  border:1px solid rgba(0,240,255,0.3);border-radius:4px;letter-spacing:.04em;
+}
+
+.cmdk-item.sel{
+  border-color:#000;background:var(--yellow);
+  transform:translateX(8px) scale(1.02);
+  box-shadow:-6px 0 0 var(--cyan), 4px 4px 0 #000;
+}
+.cmdk-item.sel .icon{background:#000;border-color:#000;color:var(--yellow);transform:scale(1.1) rotate(-6deg)}
+.cmdk-item.sel .k{color:#000}
+.cmdk-item.sel .desc{background:#000;color:#fff;border-color:#000}
+
 .cmdk-foot{
-  padding:8px 18px;border-top:2px solid var(--ink-soft);
-  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);
-  display:flex;gap:14px;flex-wrap:wrap;
+  padding:12px 20px;border-top:3px solid var(--ink);
+  background:#0d0d14;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  flex-wrap:wrap;
 }
-.cmdk-foot kbd{border:1px solid var(--ink-muted);padding:1px 5px;border-radius:2px}
-.cmdk-hint{
-  position:fixed;bottom:16px;left:16px;z-index:140;
+.cmdk-f-item{
   font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);
-  border:2px solid var(--ink-soft);padding:5px 10px;background:var(--bg-panel);
-  opacity:.7;transition:opacity .2s;
+  display:flex;align-items:center;gap:8px;
 }
+.cmdk-f-item kbd{
+  border:2px solid var(--yellow);background:rgba(255,229,0,0.15);
+  color:var(--yellow);padding:2px 7px;border-radius:4px;font-weight:700;
+  box-shadow:2px 2px 0 #000;
+}
+
+.cmdk-hint{
+  position:fixed;bottom:20px;left:20px;z-index:140;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text);
+  border:2px solid var(--yellow);padding:6px 12px;background:#0d0d14;
+  box-shadow:4px 4px 0 #000;border-radius:4px;transition:transform .2s, border-color .2s;
+  cursor:pointer;
+}
+.cmdk-hint:hover{transform:translateY(-2px);border-color:var(--cyan)}
 .cmdk-hint kbd{color:var(--yellow);font-weight:700}
 @media(max-width:900px){.cmdk-hint{display:none}}
 
@@ -1814,15 +1885,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 
 <div id="cmdk-overlay">
   <div class="cmdk-box">
+    <div class="cmdk-topbar">
+      <div class="cmdk-pill"><span class="pulse-d"></span> VOL. 01
+      <div class="cmdk-heading font-manga">ARC SELECTOR ⌘K</div>
+      <button class="cmdk-close-btn" onclick="closeCmdk()">ESC ✕</button>
+    </div>
+    <div class="cmdk-banner font-manga">⚡ SELECT CHAPTER OR EXECUTE ACTION
     <div class="cmdk-input-wrap">
-      <span class="cmdk-prompt">&gt;</span>
-      <input id="cmdk-input" placeholder="Jump to section, open link, toggle theme..." autocomplete="off">
+      <span class="cmdk-prompt font-manga">[ ⌕ TARGET ]</span>
+      <input id="cmdk-input" placeholder="TYPE CHAPTER, ARC OR COMMAND..." autocomplete="off">
     </div>
     <div class="cmdk-list" id="cmdkList"></div>
     <div class="cmdk-foot">
-      <span><kbd>↑↓</kbd> navigate</span>
-      <span><kbd>↵</kbd> select</span>
-      <span><kbd>esc</kbd> close</span>
+      <div class="cmdk-f-item"><kbd>↑ ↓</kbd> NAVIGATE ARCS</div>
+      <div class="cmdk-f-item"><kbd>↵ ENTER</kbd> TELEPORT</div>
+      <div class="cmdk-f-item"><kbd>ESC</kbd> CLOSE PALETTE</div>
     </div>
   </div>
 </div>
@@ -2699,18 +2776,18 @@ function setupProgress(){
 }
 
 const CMDS=[
-  {icon:'▸',k:'About',desc:'Chapter 02',act:()=>jump('about')},
-  {icon:'⬡',k:'Skills',desc:'Chapter 03',act:()=>jump('skills')},
-  {icon:'⚔',k:'Experience',desc:'Chapter 04',act:()=>jump('experience')},
-  {icon:'★',k:'Projects',desc:'Chapter 05',act:()=>jump('projects')},
-  {icon:'☆',k:'Research',desc:'Elsevier Q1',act:()=>jump('research')},
-  {icon:'✉',k:'Contact',desc:'Chapter 07',act:()=>jump('contact')},
-  {icon:'⌥',k:'Open GitHub',desc:'external ↗',act:()=>window.open('https://github.com/PraneetGogoi','_blank')},
-  {icon:'in',k:'Open LinkedIn',desc:'external ↗',act:()=>window.open('https://linkedin.com/in/praneet-gogoi','_blank')},
-  {icon:'↗',k:'Open Portfolio',desc:'external ↗',act:()=>window.open('https://praneetgogoi.vercel.app','_blank')},
-  {icon:'✉',k:'Copy Email',desc:'to clipboard',act:()=>{copyEmailRaw()}},
-  {icon:'📄',k:'View Resume',desc:'Manga Archive',act:()=>openResumeModal()},
-  {icon:'☽',k:'Toggle Theme',desc:'light / dark',act:()=>toggleTheme()},
+  {icon:'⚡',k:'Chapter 02
+  {icon:'⬡',k:'Chapter 03
+  {icon:'⚔',k:'Chapter 04
+  {icon:'★',k:'Chapter 05
+  {icon:'☆',k:'Elsevier Q1
+  {icon:'✉',k:'Chapter 07
+  {icon:'⌥',k:'Open GitHub Profile',desc:'EXTERNAL LINK ↗',act:()=>window.open('https://github.com/PraneetGogoi','_blank')},
+  {icon:'in',k:'Open LinkedIn Profile',desc:'EXTERNAL LINK ↗',act:()=>window.open('https://linkedin.com/in/praneet-gogoi','_blank')},
+  {icon:'↗',k:'Open Portfolio',desc:'EXTERNAL LINK ↗',act:()=>window.open('https://praneetgogoi.vercel.app','_blank')},
+  {icon:'📋',k:'Copy Email Address',desc:'CLIPBOARD COPY',act:()=>{copyEmailRaw()}},
+  {icon:'📄',k:'View & Download Resume',desc:'ARCHIVE PDF',act:()=>openResumeModal()},
+  {icon:'◐',k:'Toggle Theme',desc:'SYSTEM SWITCH',act:()=>toggleTheme()},
 ];
 let cmdkSel=0,cmdkFiltered=CMDS;
 function openCmdk(){
@@ -2722,11 +2799,16 @@ function openCmdk(){
 function closeCmdk(){document.getElementById('cmdk-overlay').classList.remove('open')}
 function renderCmdk(){
   const list=document.getElementById('cmdkList');
+  if(!list) return;
   list.innerHTML='';
+  if(cmdkFiltered.length===0){
+    list.innerHTML=`<div style="padding:30px;text-align:center;font-family:'Bangers',cursive;font-size:1.4rem;color:var(--red);">⚠️ NO CHAPTER OR SYSTEM COMMAND FOUND! ⚠️</div>`;
+    return;
+  }
   cmdkFiltered.forEach((c,i)=>{
     const d=document.createElement('div');
     d.className='cmdk-item'+(i===cmdkSel?' sel':'');
-    d.innerHTML=`<span class="icon">${c.icon}</span><span class="k">${c.k}</span><span class="desc">${c.desc}</span>`;
+    d.innerHTML=`<div class="cmdk-item-left"><span class="icon">${c.icon}</span><span class="k">${c.k}</span></div><span class="desc">${c.desc}</span>`;
     d.addEventListener('click',()=>{c.act();closeCmdk()});
     d.addEventListener('mouseenter',()=>{cmdkSel=i;renderCmdk()});
     list.appendChild(d);
