@@ -386,30 +386,37 @@ nav.scrolled{
 }
 .hero-name{
   font-family:'Bangers',cursive;
-  font-size:clamp(3.5rem,9vw,7.5rem);
-  line-height:.9;letter-spacing:.04em;color:var(--text);
+  font-size:clamp(3.1rem,7.5vw,6.2rem);
+  line-height:.85;letter-spacing:.02em;color:#fff;
+  -webkit-text-stroke:2.5px #000;
+  text-shadow:4px 4px 0 #000, 8px 8px 0 var(--cyan);
   position:relative;z-index:2;
+  transform:skew(-4deg) rotate(-1deg);
   animation:heroNameIn .6s .2s var(--ease-out) both;
 }
 .hero-name .accent{
   color:var(--yellow);
-  -webkit-text-stroke:2px var(--ink);
-  text-stroke:2px var(--ink);
-  transition:transform .3s;
+  -webkit-text-stroke:2.8px #000;
+  text-shadow:4px 4px 0 #000, 8px 8px 0 var(--red);
+  transition:all .3s var(--ease-spring);
   display:inline-block;
+  transform:rotate(2deg);
 }
-.hero-name:hover .accent{transform:scale(1.03) rotate(-1deg)}
+.hero-name:hover .accent{transform:scale(1.05) rotate(4deg) translateY(-3px)}
 @keyframes heroNameIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+  from{opacity:0;transform:translateY(20px) skew(-4deg) rotate(-1deg)}
+  to{opacity:1;transform:translateY(0) skew(-4deg) rotate(-1deg)}
 }
 .hero-role{
-  font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:.1em;
+  font-family:'Bangers',cursive;font-size:1.22rem;letter-spacing:.1em;
   color:var(--cyan);position:relative;z-index:2;
+  background:#0d0d14;border:2px solid var(--cyan);padding:3px 14px;
+  width:fit-content;border-radius:4px;box-shadow:3px 3px 0 #000;
+  transform:skew(-2deg);
   opacity:0;animation:slideUp .5s .4s var(--ease-out) forwards;
 }
 .hero-bio{
-  max-width:480px;position:relative;z-index:2;
+  max-width:510px;position:relative;z-index:2;
   opacity:0;animation:slideUp .5s .55s var(--ease-out) forwards;
 }
 .hero-status{
@@ -1645,71 +1652,107 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 }
 .landing-inner{
   position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;
-  gap:1.3rem;text-align:center;padding:2rem;max-width:920px;
+  gap:0.9rem;text-align:center;padding:1.4rem 1rem;max-width:860px;
   transition:transform .3s var(--ease-out);
 }
 .landing-issue{
-  font-family:'Bangers',cursive;font-size:.78rem;letter-spacing:.5em;
-  color:var(--yellow);border:2px solid var(--yellow);padding:5px 18px;
+  font-family:'Bangers',cursive;font-size:.76rem;letter-spacing:.3em;
+  color:var(--yellow);border:2.5px solid var(--yellow);padding:4px 16px;
   opacity:0;animation:landFade .6s .2s forwards;
   display:flex;align-items:center;gap:10px;
+  box-shadow:3px 3px 0 #000;background:rgba(0,0,0,0.85);transform:skew(-3deg);
 }
+.landing-issue .badge-tag{background:var(--red);color:#fff;padding:1px 6px;border-radius:2px;font-size:.66rem}
 .landing-issue .pulse-d{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite}
+
 .landing-title{
-  font-family:'Bangers',cursive;font-size:clamp(4rem,16vw,12rem);
-  line-height:.82;letter-spacing:.03em;color:var(--text);position:relative;
+  font-family:'Bangers',cursive;font-size:clamp(3.1rem,9.5vw,7.6rem);
+  line-height:.82;letter-spacing:.02em;position:relative;
+  transform:skew(-5deg) rotate(-1deg);
 }
-.landing-title .l1{display:block;opacity:0;transform:translateY(40px);animation:landDrop .6s .35s var(--ease-spring) forwards}
+.landing-title .l1{
+  display:block;color:#fff;-webkit-text-stroke:2.8px #000;
+  text-shadow:4px 4px 0 #000, 8px 8px 0 var(--cyan);
+  opacity:0;transform:translateY(40px);animation:landDrop .6s .35s var(--ease-spring) forwards;
+}
 .landing-title .l2{
-  display:block;color:var(--yellow);-webkit-text-stroke:3px var(--ink);
-  opacity:0;transform:translateY(40px);animation:landDrop .6s .5s var(--ease-spring) forwards;
+  display:block;color:var(--yellow);-webkit-text-stroke:3px #000;
+  text-shadow:4px 4px 0 #000, 8px 8px 0 var(--red);
+  opacity:0;transform:translateY(40px) rotate(2deg);animation:landDrop .6s .5s var(--ease-spring) forwards;
 }
-.landing-title:hover .l2{animation:titleWobble .4s ease forwards}
-@keyframes titleWobble{0%,100%{opacity:1;transform:translateY(0) rotate(0)}25%{opacity:1;transform:translateY(-4px) rotate(-1deg)}75%{opacity:1;transform:translateY(2px) rotate(1deg)}}
+.landing-title:hover .l1{animation:titleWobble1 .4s ease forwards}
+.landing-title:hover .l2{animation:titleWobble2 .4s ease forwards}
+@keyframes titleWobble1{0%,100%{opacity:1;transform:translateY(0) rotate(0)}50%{opacity:1;transform:translateY(-6px) rotate(-2deg)}}
+@keyframes titleWobble2{0%,100%{opacity:1;transform:translateY(0) rotate(2deg)}50%{opacity:1;transform:translateY(-8px) rotate(4deg)}}
 
 .landing-typed{
-  font-family:'JetBrains Mono',monospace;font-size:clamp(.85rem,2.4vw,1.15rem);
-  color:var(--cyan);letter-spacing:.05em;min-height:1.4em;
+  font-family:'Bangers',cursive;font-size:clamp(0.92rem,2.1vw,1.26rem);
+  color:var(--yellow);letter-spacing:.06em;min-height:1.5em;
+  background:#0d0d14;border:2.5px solid var(--yellow);padding:6px 18px;
+  border-radius:4px;box-shadow:4px 4px 0 #000, -2px -2px 0 var(--cyan);
+  transform:skew(-3deg);max-width:92vw;
   opacity:0;animation:landFade .5s .7s forwards;
 }
-.landing-typed .cur{color:var(--yellow);animation:blink 1s step-end infinite}
+.landing-typed .cur{color:var(--red);animation:blink 1s step-end infinite;margin-left:4px}
+
 .landing-tags{
-  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
   opacity:0;animation:landFade .6s .8s forwards;
 }
 .landing-tag{
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
-  border:2px solid var(--ink-soft);color:var(--text2);padding:4px 12px;
-  transition:border-color .2s,color .2s,transform .2s var(--ease-spring);
+  font-family:'Bangers',cursive;font-size:0.98rem;letter-spacing:.1em;
+  border:2.8px solid #000;padding:4px 14px;border-radius:4px;
+  box-shadow:3px 3px 0 #000;cursor:pointer;
+  transition:all .2s var(--ease-spring);
 }
-.landing-tag:hover{border-color:var(--yellow);color:var(--text);transform:translateY(-3px)}
-.landing-tag .y{color:var(--yellow)}
-.landing-sub{
-  font-family:'Comic Neue',cursive;font-size:1.05rem;color:var(--text2);
-  max-width:480px;opacity:0;animation:landFade .6s .9s forwards;
+.landing-tag.t-yellow{background:var(--yellow);color:#000;transform:rotate(-2deg)}
+.landing-tag.t-cyan{background:var(--cyan);color:#000;transform:rotate(1.5deg)}
+.landing-tag.t-red{background:var(--red);color:#fff;transform:rotate(-1deg)}
+.landing-tag:hover{transform:scale(1.1) translateY(-3px) rotate(0deg);box-shadow:5px 5px 0 #000;border-color:#000}
+
+.landing-sub.manga-nar-box{
+  background:#ffffff;color:#0d0d14;border:3.5px solid #000;
+  box-shadow:6px 6px 0 #000, 11px 11px 0 rgba(255,229,0,0.45);
+  padding:18px 24px 14px;border-radius:6px;max-width:540px;
+  position:relative;transform:skew(-2deg);
+  opacity:0;animation:landFade .6s .9s forwards;
 }
+.manga-nar-box .nar-header{
+  position:absolute;top:-13px;left:16px;background:#000;color:var(--yellow);
+  padding:2px 12px;font-family:'Bangers',cursive;font-size:.8rem;letter-spacing:.14em;
+  border:2px solid var(--yellow);box-shadow:2px 2px 0 #000;transform:skew(2deg);
+}
+.manga-nar-box .nar-text{
+  font-family:'Comic Neue',cursive;font-weight:700;font-size:1.06rem;line-height:1.45;margin:0;color:#14141f;
+}
+.manga-nar-box .hl-y{background:var(--yellow);color:#000;padding:1px 6px;border:1.5px solid #000;border-radius:3px;box-shadow:2px 2px 0 #000}
+.manga-nar-box .hl-c{background:var(--cyan);color:#000;padding:1px 6px;border:1.5px solid #000;border-radius:3px;box-shadow:2px 2px 0 #000}
+.manga-nar-box .hl-r{background:var(--red);color:#fff;padding:1px 6px;border:1.5px solid #000;border-radius:3px;box-shadow:2px 2px 0 #000}
+
 .landing-enter{
-  font-family:'Bangers',cursive;font-size:1.4rem;letter-spacing:.15em;
-  border:var(--bb);padding:14px 44px;cursor:none;background:transparent;color:var(--text);
-  position:relative;overflow:hidden;margin-top:.5rem;
+  font-family:'Bangers',cursive;font-size:1.35rem;letter-spacing:.15em;
+  border:3.5px solid #000;padding:12px 40px;cursor:pointer;background:var(--yellow);color:#000;
+  position:relative;overflow:hidden;margin-top:.4rem;border-radius:4px;
+  transform:skew(-4deg);
   opacity:0;animation:landFade .6s 1.05s forwards,enterBob 2.4s 1.6s ease-in-out infinite;
-  box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s;
+  box-shadow:6px 6px 0 #000, 10px 10px 0 var(--red);
+  transition:all .2s var(--ease-spring);
 }
-.landing-enter::before{
-  content:'';position:absolute;inset:0;background:var(--yellow);
-  transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease-out);z-index:0;
-}
-.landing-enter:hover::before{transform:scaleX(1)}
 .landing-enter span{position:relative;z-index:1;transition:color .2s}
-.landing-enter:hover span{color:#000}
-.landing-enter:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink);animation-play-state:paused}
-.landing-enter:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-@keyframes enterBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.landing-enter:hover{
+  background:var(--cyan);color:#000;
+  transform:skew(-4deg) translate(-3px,-3px) scale(1.03);
+  box-shadow:9px 9px 0 #000, 14px 14px 0 var(--yellow);
+  animation-play-state:paused;
+}
+.landing-enter:active{transform:translate(2px,2px);box-shadow:3px 3px 0 #000}
+@keyframes enterBob{0%,100%{transform:translateY(0) skew(-4deg)}50%{transform:translateY(-6px) skew(-4deg)}}
+
 .landing-hint{
-  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);
+  font-family:'Bangers',cursive;font-size:.9rem;letter-spacing:.12em;color:var(--text2);
   opacity:0;animation:landFade .6s 1.3s forwards;margin-top:.2rem;
 }
-.landing-hint kbd{border:1px solid var(--ink-muted);padding:1px 6px;border-radius:2px;color:var(--yellow)}
+.landing-hint kbd{border:2px solid var(--yellow);padding:2px 8px;border-radius:3px;color:var(--yellow);background:#000;box-shadow:2px 2px 0 #000}
 
 .land-bracket{position:absolute;width:44px;height:44px;border:3px solid var(--yellow);z-index:3;opacity:0}
 .land-bracket.tl{top:24px;left:24px;border-right:none;border-bottom:none;animation:landFade .5s .3s forwards}
@@ -1820,20 +1863,23 @@ a:focus-visible,button:focus-visible,input:focus-visible{
   <div class="landing-stat st1 font-manga"><span class="num">Q1</span><span class="lbl">ELSEVIER PAPER</span></div>
 
   <div class="landing-inner" id="landingInner">
+    <div class="landing-issue font-manga"><span class="pulse-d"></span> SHONEN JUMP VOL. 01 · SPECIAL ARCHIVE <span class="badge-tag">NEW ARC</span></div>
     <div class="landing-title">
-      <span class="l1">PRANEET</span>
-      <span class="l2">GOGOI!</span>
+      <span class="l1 font-manga">PRANEET</span>
+      <span class="l2 font-manga">GOGOI!</span>
     </div>
-    <div class="landing-typed"><span id="landTyped"></span><span class="cur">_</span></div>
     <div class="landing-tags">
-      <span class="landing-tag"><span class="y">▹</span> AI/ML ENGINEER</span>
-      <span class="landing-tag"><span class="y">▹</span> NLP RESEARCHER</span>
-      <span class="landing-tag"><span class="y">▹</span> DATA ENGINEER</span>
+      <span class="landing-tag t-yellow"><span class="y">⚡</span> AI/ML ENGINEER</span>
+      <span class="landing-tag t-cyan"><span class="y">⚔</span> NLP RESEARCHER</span>
+      <span class="landing-tag t-red"><span class="y">★</span> DATA ENGINEER</span>
     </div>
-    <div class="landing-sub">
-      A manga-styled portfolio of production AI systems, published research, and shipped projects.
+    <div class="landing-sub manga-nar-box">
+      <div class="nar-header font-manga">[ SYNOPSIS: ARC 01 ]</div>
+      <p class="nar-text font-comic">
+        Step into the comic-styled chronicle of <strong class="hl-y">Praneet Gogoi</strong>! An AI/ML Engineer forging <strong class="hl-c">production-grade Transformers</strong>, shipping <strong class="hl-r">Elsevier Q1 research</strong>, and deploying real-world neural pipelines across Northeast India.
+      </p>
     </div>
-    <button class="landing-enter font-manga" id="enterBtn" onclick="enterSite()"><span>ENTER THE ARC →</span></button>
+    <button class="landing-enter font-manga" id="enterBtn" onclick="enterSite()"><span>⚡ ENTER THE ARC ➔</span></button>
     <div class="landing-hint">press <kbd>ENTER</kbd> / <kbd>SPACE</kbd></div>
   </div>
 
@@ -1886,11 +1932,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 <div id="cmdk-overlay">
   <div class="cmdk-box">
     <div class="cmdk-topbar">
-      <div class="cmdk-pill"><span class="pulse-d"></span> VOL. 01
+      <div class="cmdk-pill"><span class="pulse-d"></span> VOL. 01</div>
       <div class="cmdk-heading font-manga">ARC SELECTOR ⌘K</div>
       <button class="cmdk-close-btn" onclick="closeCmdk()">ESC ✕</button>
     </div>
-    <div class="cmdk-banner font-manga">⚡ SELECT CHAPTER OR EXECUTE ACTION
+    <div class="cmdk-banner font-manga">⚡ SELECT CHAPTER OR EXECUTE ACTION</div>
     <div class="cmdk-input-wrap">
       <span class="cmdk-prompt font-manga">[ ⌕ TARGET ]</span>
       <input id="cmdk-input" placeholder="TYPE CHAPTER, ARC OR COMMAND..." autocomplete="off">
@@ -2030,19 +2076,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{
     <div class="panel panel-thick hero-left">
       <canvas id="speedCanvas"></canvas>
 
-      <div class="hero-name">
-        PRANEET<br><span class="accent">GOGOI</span>
+      <div class="hero-name font-manga">
+        PRANEET<br><span class="accent font-manga">GOGOI!</span>
       </div>
 
-      <div class="hero-role">
-        &gt;&nbsp;<span id="tw">AI/ML Engineer</span><span class="cblink">_</span>
-      </div>
-
-      <div class="narbox hero-bio">
-        Building production-grade AI systems — from a CNN-Transformer hybrid deployed across
-        <strong>5 institutions</strong> in Northeast India to ML models processing
-        <strong>1M+ daily records</strong> at IOCL. Research submitted to <strong>Elsevier</strong>.
-        Based in Guwahati, Assam.
+      <div class="hero-role font-manga">
+        <span style="color:var(--yellow)">⚡</span>&nbsp;<span id="tw">AI/ML ENGINEER</span><span class="cblink">█</span>
       </div>
 
       <div class="hero-status">
@@ -2443,33 +2482,50 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 
 <script>
 
-const IS_TOUCH = ('ontouchstart' in window) || navigator.maxTouchPoints>0;
 const ring=document.getElementById('cursor-ring');
 const dot=document.getElementById('cursor-dot');
-if(IS_TOUCH){
-  document.getElementById('cursor').style.display='none';
-  const s=document.createElement('style');
-  s.textContent='*{cursor:auto!important} a,button,.btn,.chip,.fab,.filter-tab,.ttab,.prog-dot{cursor:pointer!important}';
-  document.head.appendChild(s);
-} else {
-  let mx=0,my=0,rx=0,ry=0,moved=false;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;moved=true;
-    dot.style.left=mx+'px';dot.style.top=my+'px';
-  },{passive:true});
-  function animCursor(){
-    rx+=(mx-rx)*.15; ry+=(my-ry)*.15;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(animCursor);
+const cursor=document.getElementById('cursor');
+
+let mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my, moved=false;
+if(cursor){
+  cursor.style.opacity='1';
+  cursor.style.transition='opacity 0.2s ease';
+}
+if(dot){dot.style.left=mx+'px'; dot.style.top=my+'px';}
+if(ring){ring.style.left=rx+'px'; ring.style.top=ry+'px';}
+
+document.addEventListener('mousemove',e=>{
+  if(!moved){
+    moved=true;
+    mx=e.clientX; my=e.clientY; rx=mx; ry=my;
+    if(dot){dot.style.left=mx+'px'; dot.style.top=my+'px';}
+    if(ring){ring.style.left=rx+'px'; ring.style.top=ry+'px';}
+  } else {
+    mx=e.clientX; my=e.clientY;
+    if(dot){dot.style.left=mx+'px'; dot.style.top=my+'px';}
   }
-  animCursor();
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest('a, button, [onclick], input, textarea, select, .chip, .btn, .sbox, .rs, .panel-hover, .fab, .ttab, .filter-tab, .f-ch-link, .nav-links a')) {
-      document.body.classList.add('cursor-hover');
-    } else {
-      document.body.classList.remove('cursor-hover');
-    }
-  });
+},{passive:true});
+
+function animCursor(){
+  rx+=(mx-rx)*.2; ry+=(my-ry)*.2;
+  if(ring){ring.style.left=rx+'px'; ring.style.top=ry+'px';}
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+document.addEventListener('mouseover', e => {
+  if (e.target.closest('a, button, [onclick], input, textarea, select, .chip, .btn, .sbox, .rs, .panel-hover, .fab, .ttab, .filter-tab, .f-ch-link, .nav-links a, .prog-dot, .cmdk-item')) {
+    document.body.classList.add('cursor-hover');
+  } else {
+    document.body.classList.remove('cursor-hover');
+  }
+});
+
+if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+  if(cursor) cursor.style.display='none';
+  const s=document.createElement('style');
+  s.textContent='*{cursor:auto!important} a,button,.btn,.chip,.fab,.filter-tab,.ttab,.prog-dot,.cmdk-item{cursor:pointer!important}';
+  document.head.appendChild(s);
 }
 
 window.addEventListener('scroll',()=>{
@@ -2776,12 +2832,12 @@ function setupProgress(){
 }
 
 const CMDS=[
-  {icon:'⚡',k:'Chapter 02
-  {icon:'⬡',k:'Chapter 03
-  {icon:'⚔',k:'Chapter 04
-  {icon:'★',k:'Chapter 05
-  {icon:'☆',k:'Elsevier Q1
-  {icon:'✉',k:'Chapter 07
+  {icon:'⚡',k:'Chapter 02 — The Protagonist',desc:'TELEPORT ↗',act:()=>jump('about')},
+  {icon:'⬡',k:'Chapter 03 — Abilities Unlocked',desc:'TELEPORT ↗',act:()=>jump('skills')},
+  {icon:'⚔',k:'Chapter 04 — The Battle Arcs',desc:'TELEPORT ↗',act:()=>jump('experience')},
+  {icon:'★',k:'Chapter 05 — Mission Files',desc:'TELEPORT ↗',act:()=>jump('projects')},
+  {icon:'☆',k:'Elsevier Q1 — Research Vault',desc:'TELEPORT ↗',act:()=>jump('research')},
+  {icon:'✉',k:'Chapter 07 — Contact Comm-Link',desc:'TELEPORT ↗',act:()=>jump('contact')},
   {icon:'⌥',k:'Open GitHub Profile',desc:'EXTERNAL LINK ↗',act:()=>window.open('https://github.com/PraneetGogoi','_blank')},
   {icon:'in',k:'Open LinkedIn Profile',desc:'EXTERNAL LINK ↗',act:()=>window.open('https://linkedin.com/in/praneet-gogoi','_blank')},
   {icon:'↗',k:'Open Portfolio',desc:'EXTERNAL LINK ↗',act:()=>window.open('https://praneetgogoi.vercel.app','_blank')},
@@ -3213,41 +3269,46 @@ function enterSite(){
   setTimeout(()=>{landing.classList.add('hidden')},700);
   runSplash();
 }
-document.addEventListener('DOMContentLoaded',()=>{
+function initLanding(){
   const landing=document.getElementById('landing');
-  if(landing){
-    const eb=document.getElementById('enterBtn');
-    if(eb&&!IS_TOUCH){
-      eb.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-      eb.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
-    }
-    landing.querySelectorAll('.landing-tag').forEach(t=>{
-      if(!IS_TOUCH){
-        t.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-        t.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
-      }
-    });
-    landingType();
-    if(!IS_TOUCH&&!LOW_POWER){
-      const inner=document.getElementById('landingInner');
-      landing.addEventListener('mousemove',e=>{
-        const cx=window.innerWidth/2,cy=window.innerHeight/2;
-        const dx=(e.clientX-cx)/cx,dy=(e.clientY-cy)/cy;
-        inner.style.transform=`translate(${dx*10}px,${dy*8}px)`;
-      },{passive:true});
-      landing.addEventListener('mouseleave',()=>{inner.style.transform=''});
-    }
+  if(!landing)return;
+  const eb=document.getElementById('enterBtn');
+  if(eb&&!IS_TOUCH){
+    eb.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+    eb.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
   }
-});
+  landing.querySelectorAll('.landing-tag').forEach(t=>{
+    if(!IS_TOUCH){
+      t.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+      t.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+    }
+  });
+  landingType();
+  if(!IS_TOUCH&&!LOW_POWER){
+    const inner=document.getElementById('landingInner');
+    landing.addEventListener('mousemove',e=>{
+      const cx=window.innerWidth/2,cy=window.innerHeight/2;
+      const dx=(e.clientX-cx)/cx,dy=(e.clientY-cy)/cy;
+      if(inner) inner.style.transform=`translate(${dx*10}px,${dy*8}px)`;
+    },{passive:true});
+    landing.addEventListener('mouseleave',()=>{if(inner) inner.style.transform=''});
+  }
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initLanding);
+} else {
+  initLanding();
+}
 
 function landingType(){
   const el=document.getElementById('landTyped');
   if(!el)return;
   const phrases=[
-    'building production AI systems.',
-    'deployed across Northeast India.',
-    'published in Elsevier Q1.',
-    '92.3% accuracy, zero GPU.',
+    '⚡ ARC 01: BUILDING PRODUCTION AI SYSTEMS...',
+    '🔥 DEPLOYED ACROSS 5 INSTITUTIONS IN N.E. INDIA!',
+    '★ RESEARCH PUBLISHED IN ELSEVIER Q1 JOURNAL!',
+    '💥 92.3% ACCURACY WITH ZERO GPU POWER REQUIRED!',
+    '⚔ ARCHITECTING TRANSFORMERS & INDIC NLP PIPELINES!',
   ];
   let pi=0,ci=0,del=false;
   function tick(){
@@ -3255,14 +3316,14 @@ function landingType(){
     const cur=phrases[pi];
     if(!del){
       el.textContent=cur.slice(0,++ci);
-      if(ci===cur.length){del=true;setTimeout(tick,1500);return;}
+      if(ci===cur.length){del=true;setTimeout(tick,1600);return;}
     } else {
       el.textContent=cur.slice(0,--ci);
       if(ci===0){del=false;pi=(pi+1)%phrases.length;}
     }
-    setTimeout(tick,del?35:60);
+    setTimeout(tick,del?25:40);
   }
-  setTimeout(tick,1000);
+  tick();
 }
 document.addEventListener('keydown',e=>{
   if(!entered&&(e.key==='Enter'||e.key===' ')){
@@ -3334,7 +3395,7 @@ function initWorkstation(){
   });
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
+function initAll(){
   initLandingLines();
   buildTerminal();
   initWorkstation();
@@ -3363,7 +3424,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
   });
   setTimeout(()=>{const h=document.getElementById('cmdkHint');if(h)h.style.opacity='.35'},6000);
-});
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initAll);
+} else {
+  initAll();
+}
 
 </script>
 </body>
