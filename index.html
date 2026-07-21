@@ -11,12 +11,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Praneet Gogoi — AI/ML Engineer & NLP Researcher">
 <meta property="og:description" content="Building production-grade AI systems. IndicSignAI: 92.3% accuracy, 5 institutions, Elsevier Q1. Open to work.">
+<meta property="og:image" content="https://praneetgogoi.github.io/portfolio/og-image.jpg">
 <meta property="og:url" content="https://praneetgogoi.vercel.app">
 <meta property="og:site_name" content="Praneet Gogoi Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Praneet Gogoi — AI/ML Engineer & NLP Researcher">
 <meta name="twitter:description" content="Building production-grade AI systems. IndicSignAI: 92.3% accuracy, 5 institutions, Elsevier Q1.">
+<meta name="twitter:image" content="https://praneetgogoi.github.io/portfolio/og-image.jpg">
 <meta name="theme-color" content="#0a0a0a">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='74' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23FFE500' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
@@ -133,9 +135,17 @@ body::after{
 }
 .panel-alt{background:var(--bg-panel2)}
 
-.panel-hover:hover{
-  transform:translateY(-4px) rotate(-0.3deg);
-  box-shadow:6px 6px 0 var(--ink);
+/* Hover lift - Only on devices that support hover */
+@media (hover: hover) {
+  .panel-hover:hover{
+    animation: panelImpact 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+}
+@keyframes panelImpact {
+  to{
+    transform:translateY(-4px) rotate(-0.3deg);
+  }
 }
 
 .panel-draw{
@@ -904,12 +914,16 @@ footer{
   .nav-links{display:none}
   .nav-hamburger{display:flex}
   .mobile-nav{display:flex}
+  :root{--gutter:16px}
 }
-@media(max-width:580px){
+@media(max-width:768px){
+  .manga-page-grid{grid-template-columns:1fr;grid-template-rows:minmax(220px, auto) minmax(220px, auto) minmax(240px, auto)}
+  .mp-panel-1,.mp-panel-2,.mp-panel-3{grid-column:1/-1;grid-row:auto}
   .skills-grid,.data-grid,.mid-grid{grid-template-columns:1fr}
   .res-stats{grid-template-columns:repeat(2,1fr)}
-  .manga-page-grid{grid-template-columns:1fr;grid-template-rows:220px 220px 240px}
-  .mp-panel-1,.mp-panel-2,.mp-panel-3{grid-column:1/-1;grid-row:auto}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:580px){
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -1536,7 +1550,7 @@ footer{
     word-break:break-word;overflow-wrap:anywhere;
   }
   .hero-left{padding:1.5rem 1rem}
-  .hero-name{font-size:clamp(2.5rem,13vw,3.8rem);line-height:.95}
+  .hero-name{font-size:clamp(2rem,11vw,3.8rem);line-height:.95}
   
   
   .panel,.exp-panel,.proj-flagship,.res-panel,.contact-panel{overflow:hidden!important}
@@ -1799,6 +1813,35 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 .land-bracket.bl{bottom:24px;left:24px;border-right:none;border-top:none;animation:landFade .5s .5s forwards}
 .land-bracket.br{bottom:24px;right:24px;border-left:none;border-top:none;animation:landFade .5s .6s forwards}
 
+.panel-draw:hover::after{animation:drawBorder .3s forwards}
+
+/* Mobile FAB Styles */
+.mobile-cmdk-fab {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-size: 1.2rem;
+  z-index: 99;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  align-items: center;
+  justify-content: center;
+}
+.mobile-cmdk-fab:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+@media (max-width: 768px) {
+  .mobile-cmdk-fab { display: flex; }
+}
+
 .landing-sfx{
   position:absolute;font-family:'Permanent Marker',cursive;
   color:var(--red);-webkit-text-stroke:2px var(--ink);pointer-events:none;z-index:3;
@@ -1834,7 +1877,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 @keyframes splatIn2{from{opacity:0;transform:scale(0) rotate(12deg)}to{opacity:1}}
 @media(max-width:600px){
   .landing-inner{padding:1.2rem 1rem;gap:1rem}
-  .landing-title{font-size:clamp(2.6rem,13vw,5.5rem);word-break:break-word}
+  .landing-title{font-size:clamp(2.2rem,11vw,5.5rem);word-break:break-word}
   .land-bracket{width:22px;height:22px}
   .landing-enter{font-size:1.05rem;padding:12px 24px;width:100%;max-width:260px}
   .landing-sfx.s1{font-size:1.3rem;right:4%;top:10%;opacity:.4}
@@ -2321,16 +2364,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{
       <div class="sfx sfx-abs font-sfx" style="top:3rem;right:1.2rem;font-size:2.4rem;transform:rotate(6deg);color:var(--red)">LEGENDARY!</div>
       <div class="proj-badge font-manga">★ FLAGSHIP MISSION</div>
       <div class="proj-name font-manga">MISSION 01: INDICSIGNAI</div>
+      <div class="proj-links">
+        <a class="proj-link font-manga" href="projects/indicsignai.html" style="background:var(--yellow);color:#000;border:2px solid #000;margin-right:10px;">READ CASE STUDY ↗</a>
+        <a class="proj-link font-manga" href="https://github.com/PraneetGogoi/IndicSignAI" target="_blank">GitHub ↗</a>
+      </div>
       <div class="proj-stack font-mono">EfficientNetV2-S · Transformer · NLLB-200 · T5 · Flask · WebGL · MediaPipe</div>
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div class="proj-stars">★★★★★</div>
-        <a class="proj-link font-manga" href="https://github.com/PraneetGogoi/IndicSignAI" target="_blank">GitHub ↗</a>
       </div>
       <div class="stats-row">
         <div class="sbox"><span class="snum" data-count="92.3" data-suffix="%">0</span><span class="slbl">Top-1 Acc</span></div>
         <div class="sbox"><span class="snum" data-count="45" data-suffix="ms">0</span><span class="slbl">CPU Infer.</span></div>
         <div class="sbox"><span class="snum" data-count="178">0</span><span class="slbl">ISL Classes</span></div>
-        <div class="sbox"><span class="snum" data-count="127100" data-comma="1">0</span><span class="slbl">Translations</span></div>
+        <div class="sbox"><span class="snum" id="live-translations-count" data-count="127100" data-comma="1">0</span><span class="slbl">Translations</span></div>
         <div class="sbox"><span class="snum" data-count="91.2" data-suffix="%">0</span><span class="slbl">Healthcare</span></div>
         <div class="sbox"><span class="snum" data-count="23" data-suffix="%">0</span><span class="slbl">Comprehension</span></div>
         <div class="sbox"><span class="snum" data-count="6">0</span><span class="slbl">Languages</span></div>
@@ -2524,6 +2570,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{
     <span>© 2026 · AI/ML ENGINEER · GUWAHATI, ASSAM</span>
   </div>
 </footer>
+
+<!-- Mobile CMDK FAB -->
+<button class="mobile-cmdk-fab font-manga" onclick="toggleCmdk()" aria-label="Open Command Menu">⌘K</button>
 
 <script>
 
@@ -3150,7 +3199,21 @@ function setupFab(){
 }
 function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
 
-const WEB3FORMS_KEY='YOUR_ACCESS_KEY_HERE';
+async function fetchLiveStats() {
+  try {
+    const res = await fetch('/api/indicsign_stats');
+    if (!res.ok) return;
+    const stats = await res.json();
+    if (stats.success && stats.translations) {
+      const el = document.getElementById('live-translations-count');
+      if (el) {
+        el.setAttribute('data-count', stats.translations);
+      }
+    }
+  } catch(err) {
+    console.error('Failed to update live stats:', err);
+  }
+}
 
 async function sendMessage(e){
   e.preventDefault();
@@ -3159,48 +3222,57 @@ async function sendMessage(e){
   const status=document.getElementById('cfStatus');
   const sfx=document.getElementById('cfSfx');
 
-  if(form.botcheck.value){return false;}
-
-  if(WEB3FORMS_KEY==='YOUR_ACCESS_KEY_HERE'){
-    status.className='cf-status err';
-    status.textContent='⚠ Form not configured yet — add your Web3Forms key.';
-    return false;
-  }
+  if(form.botcheck && form.botcheck.value){return false;}
 
   status.className='cf-status sending';
   status.textContent='> sending message...';
-  btn.disabled=true;btn.querySelector('span').textContent='SENDING...';
+  btn.disabled=true;
+  const btnSpan = btn.querySelector('span');
+  if(btnSpan) btnSpan.textContent='SENDING...';
 
   const data={
-    access_key:WEB3FORMS_KEY,
     name:form.name.value,
     email:form.email.value,
-    message:form.message.value,
-    subject:`Portfolio contact from ${form.name.value}`,
-    from_name:'Praneet Portfolio'
+    message:form.message.value
   };
 
   try{
-    const res=await fetch('https://api.web3forms.com/submit',{
+    const isLocal = window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+    const res=await fetch('/api/send_message',{
       method:'POST',
-      headers:{'Content-Type':'application/json',Accept:'application/json'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify(data)
     });
+    
+    // On local dev servers (Live Server), POST might return 405 or HTML, failing json parsing
+    if (!res.ok && isLocal) {
+      throw new Error("Local Bypass");
+    }
+
     const json=await res.json();
-    if(json.success){
+    if(res.ok && json.success){
       status.className='cf-status ok';
       status.textContent='✓ Message sent! I\u2019ll get back to you soon.';
       form.reset();
-      sfx.classList.remove('pop');void sfx.offsetWidth;sfx.classList.add('pop');
+      if(sfx) { sfx.classList.remove('pop');void sfx.offsetWidth;sfx.classList.add('pop'); }
     } else {
       status.className='cf-status err';
       status.textContent='✗ '+(json.message||'Something went wrong. Try email instead.');
     }
   } catch(err){
-    status.className='cf-status err';
-    status.textContent='✗ Network error — please email me directly.';
+    const isLocal = window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+    if(isLocal) {
+      status.className='cf-status ok';
+      status.textContent='✓ [LOCAL TEST] API called! (Deploy to test real emails)';
+      form.reset();
+      if(sfx) { sfx.classList.remove('pop');void sfx.offsetWidth;sfx.classList.add('pop'); }
+    } else {
+      status.className='cf-status err';
+      status.textContent='✗ Network error — please email me directly.';
+    }
   } finally {
-    btn.disabled=false;btn.querySelector('span').textContent='SEND IT →';
+    btn.disabled=false;
+    if(btnSpan) btnSpan.textContent='SEND IT →';
   }
   return false;
 }
@@ -3213,15 +3285,49 @@ function setupFilter(){
       bar.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
       tab.classList.add('active');
       const f=tab.dataset.filter;
-      document.querySelectorAll('.proj-card').forEach(card=>{
+      
+      const cards = Array.from(document.querySelectorAll('.proj-card'));
+      
+      // 1. FLIP: First - measure initial positions
+      const firstRects = new Map();
+      cards.forEach(c => firstRects.set(c, c.getBoundingClientRect()));
+      
+      // Apply filters
+      cards.forEach(card=>{
         const cats=(card.dataset.cat||'').split(' ');
         const show=(f==='all'||cats.includes(f));
         if(show){
           card.classList.remove('proj-hidden');
-          card.classList.remove('proj-filtering');void card.offsetWidth;
-          card.classList.add('proj-filtering');
         } else {
           card.classList.add('proj-hidden');
+        }
+      });
+      
+      // 2. FLIP: Last - measure new positions after DOM updates
+      const lastRects = new Map();
+      cards.forEach(c => lastRects.set(c, c.getBoundingClientRect()));
+      
+      // 3. FLIP: Invert & Play
+      cards.forEach(card => {
+        if(card.classList.contains('proj-hidden')) return;
+        const first = firstRects.get(card);
+        const last = lastRects.get(card);
+        const dx = first.left - last.left;
+        const dy = first.top - last.top;
+        
+        // If it was hidden, fade and scale it in
+        if(first.width === 0 && last.width > 0) {
+           card.animate([
+             { opacity: 0, transform: 'scale(0.9) translateY(20px)' },
+             { opacity: 1, transform: 'scale(1) translateY(0)' }
+           ], { duration: 400, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' });
+        } 
+        // If it moved, slide it smoothly
+        else if (dx !== 0 || dy !== 0) {
+           card.animate([
+             { transform: `translate(${dx}px, ${dy}px)` },
+             { transform: 'translate(0, 0)' }
+           ], { duration: 400, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' });
         }
       });
     });
@@ -3458,7 +3564,9 @@ function initAll(){
   initWorkstation();
   setTimeout(typeRole,900);
   setupObserver();
-  setupProgress();
+  fetchLiveStats().then(() => {
+    setupProgress();
+  });
   renderCmdk();
   initDotfield();
   setupChapters();
